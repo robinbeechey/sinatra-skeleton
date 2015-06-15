@@ -22,6 +22,10 @@ post '/messages' do
   redirect '/messages'
 end
 
+get '/messages/:id' do
+  @message = Message.find params[:id]
+  erb :'messages/show'
+end
 
 
 
