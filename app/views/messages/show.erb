@@ -1,5 +1,5 @@
 
-<h1> <%= @message.title %> </h1>
+<h1> <%= @message.url %> </h1>
 
 <p>
   Author: <%= @message.author %>
@@ -7,6 +7,15 @@
 
 <p>
   <%= @message.content  %>
+</p>
+
+<p><strong>More from author</strong></p>
+<p>
+  <% message = Message.where(author: @message.author) %>
+    <% message.each do |msg| %>
+      <li><%= msg.content %></li>  
+    <% end %>
+
 </p>
 
 <hr/>

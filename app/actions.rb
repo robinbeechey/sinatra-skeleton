@@ -9,12 +9,14 @@ get '/messages' do
 end
 
 get '/messages/new' do
+  #why does this work and how does the value stay?
+  @message = Message.new
   erb :'messages/new'
 end
 #why does order matter
 post '/messages' do
   @message = Message.new(
-    title: params[:title],
+    url: params[:url],
     content: params[:content],
     author: params[:author]
     )
