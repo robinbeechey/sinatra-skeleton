@@ -11,17 +11,20 @@ end
 get '/messages/new' do
   erb :'messages/new'
 end
-
+#why does order matter
 post '/messages' do
   @message = Message.new(
     title: params[:title],
     content: params[:content],
     author: params[:author]
     )
-  @message.save
-  redirect '/messages'
+  if @message.save
+    redirect '/messages'
+  else
+    erb :'messages/new'
+  end
 end
-
+#^ why is it redirecting upon failure on (url bar)
 get '/messages/:id' do
   @message = Message.find params[:id]
   erb :'messages/show'
